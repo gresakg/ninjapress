@@ -3,6 +3,8 @@
 
 include "wp_bootstrap_navwalker.php";
 
+include "My_widget.php";
+
 add_theme_support('post-thumbnails');
 
 add_image_size('ninja', 100, 100, true );
@@ -32,3 +34,22 @@ function ninja_register_theme_menus() {
     );
 }
 add_action( 'init', 'ninja_register_theme_menus' );
+
+
+/**
+ * Register our sidebars and widgetized areas.
+ *
+ */
+function ninja_widgets_init() {
+
+	register_sidebar( array(
+		'name'          => 'Home right sidebar',
+		'id'            => 'home_right_1',
+		'before_widget' => '<div>',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2 class="rounded">',
+		'after_title'   => '</h2>',
+	) );
+
+}
+add_action( 'widgets_init', 'ninja_widgets_init' );
